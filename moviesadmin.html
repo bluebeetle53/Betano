@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - ZMOVIES.MG</title>
+  <script src='//niphaumeenses.net/vignette.min.js' data-zone='8555048' data-sdk='show_8555048'></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Admin Dashboard</h1>
+  </header>
+  <main>
+    <section class="admin-section">
+      <h2>Add/Update Movie</h2>
+      <form id="movie-form">
+        <input type="text" id="title" placeholder="Movie Title" required>
+        <input type="url" id="url" placeholder="YouTube URL" required>
+        <input type="text" id="type" placeholder="Type (e.g., Nigeria, Anime)" required>
+        <textarea id="description" placeholder="Movie Description" required></textarea>
+        <button type="submit">Save Movie</button>
+      </form>
+    </section>
+    <section class="movies-list-section">
+      <h2>Uploaded Movies</h2>
+      <ul id="admin-movies-container"></ul>
+    </section>
+  </main>
+  <script>
+    const APP_ID = "6cEXDBe20h22P5xWeh7rH4SffXZDxTukcvPsEGV4";
+const REST_API_KEY = "8nVYL8M1635MgwSVCLzbvW8FqyoAaCIrjUHXFPiZ";
+
+async function saveMovie(e) {
+  e.preventDefault();
+  const title = document.getElementById("title").value;
+  const url = document.getElementById("url").value;
+  const type = document.getElementById("type").value;
+  const description = document.getElementById("description").value;
+
+  const response = await fetch(`https://parseapi.back4app.com/classes/Movie`, {
+    method: "POST",
+    headers: {
+      "X-Parse-Application-Id": APP_ID,
+      "X-Parse-REST-API-Key": REST_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, url, type, description }),
+  });
+
+  if (response.ok) {
+    alert("Movie saved successfully!");
+    fetchAdminMovies();
+  }
+}
+
+async function fetchAdminMovies() {
+  const response = await fetch(`https://parseapi.back4app.com/classes/Movie`, {
+    headers: {
+      "X-Parse-Application-Id": APP_ID,
+      "X-Parse-REST-API-Key": REST_API_KEY,
+    },
+  });
+  const data = await response.json();
+  displayAdminMovies(data.results);
+}
+
+function displayAdminMovies(movies) {
+  const container = document.getElementById("admin-movies-container");
+  container.innerHTML = "";
+  movies.forEach((movie) => {
+    const li = document.createElement("li");
+    li.textContent = `${movie.title} - ${movie.type}`;
+    container.appendChild(li);
+  });
+}
+
+document.getElementById("movie-form").addEventListener("submit", saveMovie);
+fetchAdminMovies();
+
+  </script>
+  
+  <script type='text/javascript' src='//slushhelmetmirth.com/8f/37/0f/8f370f68d61188fd982021f8f5999e68.js'></script>
+  
+  <script>
+    setInterval(() => {
+    show_8555048().then(() => {
+        // Add your user reward function or logic here
+        alert('You have seen an ad!');
+    }).catch((error) => {
+        console.error('Failed to show ad:', error);
+    });
+}, 30000); // 30000 milliseconds = 30 seconds
+  </script>
+</body>
+</html>
