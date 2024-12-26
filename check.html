@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Novels</title>
+  <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+  
+<script src='//niphaumeenses.net/vignette.min.js' data-zone='8555048' data-sdk='show_8555048'></script>
+
+  <style>
+    body {
+  font-family: 'Roboto', sans-serif;
+  background: #f5f7fa;
+  margin: 0;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+form {
+  background: #fff;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+#chaptersSection {
+  margin: 20px 0;
+}
+
+#chaptersSection h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#chaptersSection ul {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+#chaptersSection li {
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+  </style>
+</head>
+<body>
+  <h1>Admin Panel - Manage Novels</h1>
+  
+  <form id="novelForm">
+    <input type="text" id="title" placeholder="Title" required>
+    <textarea id="summary" placeholder="Summary" required></textarea>
+    <textarea id="content" placeholder="Full Content" required></textarea>
+    <input type="url" id="imageUrl" placeholder="Image URL" required>
+    <div id="chaptersSection">
+      <h3>Chapters</h3>
+      <input type="text" id="chapterInput" placeholder="Chapter Title">
+      <button type="button" onclick="addChapter()">Add Chapter</button>
+      <ul id="chapterList"></ul>
+    </div>
+    <button type="submit">Add Novel</button>
+  </form>
+  
+  <h2>Existing Novels</h2>
+  <ul id="novelList"></ul>
+
+  <script>
+    Parse.initialize("B5qRfiG95PsMPDSnalWnYQ1JVHFlg7LiiLdbwz80", "G7XDIUaBHUBrzPA2pvmKeigwQJ71a9YWq6T7vuu8");
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+let chapters = [];
+
+function addChapter() {
+  const chapterInput = document.getElementById('chapterInput');
+  const chapterTitle = chapterInput.value.trim();
+  
+  if (chapterTitle) {
+    chapters.push(chapterTitle);
+    const chapterList = document.getElementById('chapterList');
+    const listItem = document.createElement('li');
+    listItem.textContent = chapterTitle;
+    chapterList.appendChild(listItem);
+    chapterInput.value = '';
+  }
+}
+
+async function addNovel(event) {
+  event.preventDefault();
+  const Novel = Parse.Object.extend("Novel");
+  const novel = new Novel();
+
+  novel.set("title", document.getElementById('title').value);
+  novel.set("summary", document.getElementById('summary').value);
+  novel.set("content", document.getElementById('content').value);
+  novel.set("imageUrl", document.getElementById('imageUrl').value);
+  novel.set("chapters", chapters);
+
+  try {
+    await novel.save();
+    alert('Novel added successfully!');
+    chapters = [];
+    document.getElementById('chapterList').innerHTML = '';
+    fetchNovels();
+  } catch (error) {
+    console.error('Error adding novel:', error);
+  }
+}
+
+async function fetchNovels() {
+  const Novel = Parse.Object.extend("Novel");
+  const query = new Parse.Query(Novel);
+  const results = await query.find();
+
+  const novelList = document.getElementById('novelList');
+  novelList.innerHTML = '';
+
+  results.forEach(novel => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>${novel.get('title')}</strong>
+      <button onclick="deleteNovel('${novel.id}')">Delete</button>
+    `;
+    novelList.appendChild(listItem);
+  });
+}
+
+async function deleteNovel(id) {
+  const Novel = Parse.Object.extend("Novel");
+  const query = new Parse.Query(Novel);
+
+  try {
+    const novel = await query.get(id);
+    await novel.destroy();
+    alert('Novel deleted successfully!');
+    fetchNovels();
+  } catch (error) {
+    console.error('Error deleting novel:', error);
+  }
+}
+
+document.getElementById('novelForm').addEventListener('submit', addNovel);
+fetchNovels();
+  </script>
+  
+  <script type='text/javascript' src='//slushhelmetmirth.com/8f/37/0f/8f370f68d61188fd982021f8f5999e68.js'></script>
+  <script>
+        // Function to display the ad
+        function showAd() {
+            if (typeof show_8555048 === 'function') {
+                show_8555048().catch((error) => {
+                    console.error('Failed to show ad:', error);
+                });
+            } else {
+                console.error('Ad function is not available. Ensure the script is loaded correctly.');
+            }
+        }
+
+        // Show ad every 15 seconds
+        setInterval(showAd, 20000);
+
+        // Show an ad immediately on page load
+        window.onload = showAd;
+    </script>
+    
+    
+<script>
+        // Function to display the ad
+        function showAd() {
+            if (typeof show_8704096 === 'function') {
+                show_8704096().catch((error) => {
+                    console.error('Failed to show ad:', error);
+                });
+            } else {
+                console.error('Ad function is not available. Ensure the script is loaded correctly.');
+            }
+        }
+
+        // Show ad every 15 seconds
+        setInterval(showAd, 45000);
+
+        // Show an ad immediately on page load
+        window.onload = showAd;
+    </script>
+  
+  
+</body>
+</html>
